@@ -1,0 +1,1 @@
+To run program enter node liri "search term", Choose a search term:, concert-this, spotify-this-song, movie-this, do-what-it-says
