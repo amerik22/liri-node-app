@@ -43,10 +43,16 @@ function concertThis(artist){
 
 function spotifyThis(song){
     var song = term;
-    spotify
-    .search({ type: 'track', query: song })
+    if(song === ""){
+        song = "The Sign"
+    };
+    spotify.search({ type: 'track', query: song })
     .then(function(response) {
-      console.log(response);
+        var response = response.tracks.items[0];
+      console.log("Artist: " + response.album.artists[0].name);
+      console.log("Song: " + response.name);
+      console.log("Preview URL: " + response.preview_url);
+      console.log("Album: " + response.album.name);
     })
     .catch(function(err) {
       console.log(err);
@@ -57,7 +63,7 @@ function movieThis(movieTitle){
     var movieTitle = term;
     if(movieTitle === ""){
         movieTitle = "Mr. Nobody"
-    }
+    };
     var queryURL = "http://www.omdbapi.com/?t=" + movieTitle + "&y=&plot=short&apikey=trilogy"
     axios.get(queryURL)
     .then(function(response){
@@ -76,18 +82,18 @@ function movieThis(movieTitle){
 function doThis(){
     fs.readFile("random.txt", "utf8", function(error, data) {
 
-        // If the code experiences any errors it will log the error to the console.
+        
         if (error) {
           return console.log(error);
         }
       
-        // We will then print the contents of data
+        
         console.log(data);
       
-        // Then split it by commas (to make it more readable)
+        
         var dataArr = data.split(",");
       
-        // We will then re-display the content as an array for later use.
+       
         console.log(dataArr);
       
       });
